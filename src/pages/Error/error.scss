@@ -1,0 +1,24 @@
+@import 'node_modules/@2600hz/sds-core/sds-tools';
+
+.error404{
+  @include sds-flex(center, center, column);
+  width: 100%;
+  height: 100vh;
+  .sipsterLogo{
+    color: var(--sds_theme_background_high);
+    height: 100px;
+    margin-bottom: sds-spc(24);
+  }
+  h1, p{
+    color: var(--sds_theme_text);
+  }
+
+  h1{
+    @include sds-typeset(title-2, bold);
+    margin-bottom: sds-spc(8)
+  }
+
+  p{
+    margin-bottom: sds-spc(32);
+  }
+}

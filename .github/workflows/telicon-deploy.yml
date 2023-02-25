@@ -1,0 +1,39 @@
+name: Telicon Static Page Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+#This is to give permissions and avoid having problems in gh-pages deploy
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Cloning Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Installing Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Installing yarn
+        run: npm install -g yarn
+
+      - name: Installing Dependencies
+        run: yarn
+
+      - name: Building Static Page
+        run: yarn build
+
+      - name: Deploying Storybook Page
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
